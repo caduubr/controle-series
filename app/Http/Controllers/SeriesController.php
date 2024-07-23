@@ -12,7 +12,7 @@ class SeriesController extends Controller
     {
         //return redirect(to: 'https://google.com.br'); 
 
-        $series = Serie::query()->orderBy('nome')->get();
+        $series = Serie::query()->orderByRaw('LOWER(nome)')->get();
         // dd($series);
 
         // return view('series.index', compact('series'));
@@ -26,12 +26,16 @@ class SeriesController extends Controller
 
     public function store(Request $request)
     {
-        $nomeSerie = $request->input('nome');
-        $serie = new Serie();
-        $serie->nome = $nomeSerie;
-        $serie->save();
+        Serie::create($request->all()); 
 
-        return redirect('/series');
+        return to_route('series.index');
 
+    }
+
+    public function destroy(Request $request) 
+    {
+        Serie::destroy($request->series);
+
+        return to_route('series.index');
     }
 }
