@@ -1,5 +1,11 @@
 <x-layout title="Séries">
     <a href="{{ route('series.create') }}" class="btn btn-dark mb-2">Adicionar</a>
+    
+    @isset($mensagemSucesso)
+    <div class="alert alert-success">
+        {{ $mensagemSucesso }}
+    </div>
+    @endisset
 
     <ul class="list-group">
         @foreach ($series as $serie)
@@ -10,7 +16,7 @@
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-danger btn-sm">
-                        Excluir
+                        Remover
                     </button>
                 </form>
             </li>
