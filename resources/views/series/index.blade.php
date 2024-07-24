@@ -13,7 +13,10 @@
                 {{ $serie->nome }}
 
                 <span class="d-flex">
-                    <form action="{{ route('series.destroy', $serie->id ) }}" method="post">
+                    <a href="{{ route('series.edit', $serie->id) }}" class="btn btn-primary btn-sm">
+                        Alterar
+                    </a>
+                    <form action="{{ route('series.destroy', $serie->id) }}" method="post" class="ms-2">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger btn-sm">
